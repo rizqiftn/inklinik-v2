@@ -16,7 +16,7 @@ class Examination extends BaseRepositories {
                         ->join('admission_t', 'admission_t.admission_id', '=', 'examination_logs.admission_id')
                         ->where('symptoms' , 'like', '%'.$symptoms.'%')->get()->first();
 
-            return $data->time_diff;
+            return $data->time_diff == null ? $avgExaminationTime : $data->time_diff;
         }
         return $avgExaminationTime;
     }

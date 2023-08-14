@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Groupage;
+use App\Models\Queue as ModelsQueue;
 use App\Repositories\Admission;
 use App\Repositories\Doctor;
 use App\Repositories\Nurse;
@@ -72,11 +73,11 @@ class AdmissionController extends Controller
 
     public function skipQueue(Request $request)
     {
+        ModelsQueue::where('queue_id', '=', $request->get('queue_id'))->update([
+            'queue_status' => config('global.reference.queue_status_dilewati')
+        ]);
         return response()->json([
             'message' => 'Success skip queue',
-            'data' => [
-                'request' => $request->all()
-            ]
         ]);
     }
 
@@ -97,6 +98,30 @@ class AdmissionController extends Controller
         $payload['patient_age'] = findAge($patientInformation->patient_dob);
 
         (new Admission)->createAdmission($payload);
+        if ( isset($payload['queue_id']) ) {
+            ModelsQueue::where('queue_id', '=', $payload['queue_id'])->update([
+                'queue_status' => config('global.reference.queue_status_dipanggil')
+            ]);
+        }
         return redirect(route('admin.admission.queueForm'));
+    }
+
+    public function getSkippedQueue(Request $request)
+    {
+        $activeSchedule = (new Schedule)->getActiveSchedule();
+
+        $queueData = ModelsQueue::where('schedule_id', '=', $activeSchedule->schedule_id)->where('queue_status', '=', 20);
+        // $queueData->whereBetween('admission_t.created_at', [date('Y-m-d 00:00:00'), date('Y-m-d 23:59:00')]);
+        $result = [];
+        foreach( $queueData->get()->toArray() as $key => $queueItem ) {
+            $result[] = $queueItem;
+        }
+        return response()->json([
+            'message' => 'Success get queue data',
+            'draw' => $request->get('draw'),
+            'recordsTotal' => count($result),
+            'recordsFiltered' => count($result),
+            'data' => $result
+        ]);
     }
 }

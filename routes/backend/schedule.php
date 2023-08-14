@@ -34,3 +34,5 @@ Route::post('schedule/edit-dayoff', [ScheduleController::class, 'updateDayoff'])
 
 Route::get('schedule/get-dayoff-list', [ScheduleController::class, 'getDataDayoff']);
 Route::get('schedule/get-schedule-list', [ScheduleController::class, 'getScheduleData']);
+
+Route::get('schedule/delete-dayoff/{dayoffId}', [ScheduleController::class, 'removeDayoff']);

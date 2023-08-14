@@ -2,8 +2,16 @@
 
 @section('title', __('Admission Form'))
 
+@push('after-styles')
+    <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
+@endpush
+
 @push('after-scripts')
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
     <script src="{{ asset('js/app/admission/queue_form.js') }}"> </script>
+    <script>
+        var skipQueueTbl;
+    </script>
 @endpush
 
 @section('content')
@@ -52,7 +60,7 @@
                             <h5>
                                 <b>Daftar Antrian Dilewati</b>
                             </h5>
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="skip-queue-table">
                                 <thead>
                                     <th>Queue Number</th>
                                     <th>Status</th>

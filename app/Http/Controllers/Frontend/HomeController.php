@@ -58,11 +58,15 @@ class HomeController
         return redirect(route('frontend.user.dashboard'));
     }
 
-    public function getScheduleTime($schedule)
+    public function getScheduleTime($schedule, $reservationDate)
     {
+        $scheduleQuery = ModelsSchedule::where('schedule_day', $schedule);
+        if ( date('Y-m-d', strtotime($reservationDate) == date('Y-m-d') ) ) {
+            $scheduleQuery->where('schedule_time_end', '>', date('H:i:00', strtotime('+60 minutes'))); // ditambah sejam biar masuk ke rules maksimal pengambilan adalah 1 jam sebelum jam klinik tutup
+        }
         return response()->json([
             'message' => "Success get schedule time",
-            'data' => ModelsSchedule::where('schedule_day', $schedule)->orderBy('schedule_time_start', 'ASC')->get()->toArray()
+            'data' => $scheduleQuery->orderBy('schedule_time_start', 'ASC')->get()->toArray()
         ]);
     }
 

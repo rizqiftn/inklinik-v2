@@ -59,15 +59,20 @@ class Queue extends BaseRepositories {
         $getLatestQueue = (new ModelQueue())->select('time_attendance', 'symptoms')->whereBetween('time_attendance', [
             date('Y-m-d H:i:s', strtotime($date_start)), 
             date('Y-m-d H:i:s', strtotime($date_end))
-        ])->latest()->get();
+        ])->orderBy('queue_id', 'desc')->get()->first();
 
-        if ( $getLatestQueue->isEmpty() ) {
+        if ( empty($getLatestQueue) ) {
             return Carbon::createFromFormat('Y-m-d H:i:s', $date_start)->toDateTimeString();
         }
 
         $avgWaitingTime = (new Examination)->getAvgExaminationTime($getLatestQueue->symptoms);
 
-        return Carbon::createFromFormat('Y-m-d H:i:s', $getLatestQueue[0]->time_attendance)->addSecond($avgWaitingTime)->toDateTimeString();
+        $latestQueueDate = date('Y-m-d H:i:00', strtotime($getLatestQueue->time_attendance));
+        if ( date('Y-m-d H:i:00') > $latestQueueDate) {
+            $latestQueueDate = date('Y-m-d H:i:00');
+        }
+
+        return Carbon::createFromFormat('Y-m-d H:i:s', $latestQueueDate)->addSecond($avgWaitingTime)->toDateTimeString();
     }
 
     public function getQueueCount($status = '')

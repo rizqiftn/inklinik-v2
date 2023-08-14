@@ -171,8 +171,8 @@ class ExaminationController extends Controller
         return response()->json([
             'message' => 'Success get admission data',
             'draw' => $request->get('draw'),
-            'recordsTotal' => 1,
-            'recordsFiltered' => 1,
+            'recordsTotal' => count($result),
+            'recordsFiltered' => count($result),
             'data' => $result
         ]);
     }

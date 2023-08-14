@@ -23,7 +23,13 @@
                                     </div>
                                     <div class="row text-center">
                                         <div class="col">
-                                            Silahkan datang pada <br> <b>{{ $getActiveQueue->time_attendance ?? '-' }}</b>
+                                            Total Antrian Sebelum Anda <br> <b>{{ $getCountQueue }}</b>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row text-center">
+                                        <div class="col">
+                                            Kami merekomendasikan anda untuk datang pada <br> <b>{{ date('d/m/Y H:i:00', strtotime($getActiveQueue->time_attendance)) ?? '-' }}</b>
                                         </div>
                                     </div>
                                 @else

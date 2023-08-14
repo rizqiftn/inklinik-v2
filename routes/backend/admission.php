@@ -26,5 +26,6 @@ Route::get('admission/new-patient', [AdmissionController::class, 'newPatient'])
 
 Route::get('admission/get-latest-queue', [AdmissionController::class,'getLatestQueue']);
 Route::get('admission/skip-queue', [AdmissionController::class,'skipQueue']);
+Route::get('admission/get-skipped-queue-data', [AdmissionController::class,'getSkippedQueue']);
 
 Route::post('admission/save-admission', [AdmissionController::class, 'saveAdmission'])->name('admission.saveAdmission');

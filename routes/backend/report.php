@@ -8,4 +8,6 @@ Route::get('report', [ReportController::class, 'generateReport'])
     ->breadcrumbs(function (Trail $trail) {
         $trail->push(__('Generate Report'), route('admin.report'));
     });
+
+Route::post('report/report-view', [ReportController::class, 'reportView'])->name('report.reportView');
     

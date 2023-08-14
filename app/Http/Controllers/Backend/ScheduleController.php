@@ -71,6 +71,12 @@ class ScheduleController extends Controller
         return redirect(route('admin.schedule.dayoff'));
     }
 
+    public function removeDayoff($dayoffId)
+    {
+        Dayoff::where('dayoff_id', $dayoffId)->forceDelete();
+        return redirect(route('admin.schedule.dayoff'));
+    }
+
     public function updateDayoff(Request $request)
     {
         $dayoffPayload = $request->post();
