@@ -51,74 +51,95 @@
                     </x-slot>
 
                     <x-slot name="body">
-                        <x-frontend.card>
-                            <x-slot name="header">
-                                <div class="row">
-                                    <div class="col">
-                                        <b>KLN2300123123</b> - 22/10/2023 - dr. Eka Nugraha
+                        <div id="accordion">
+                            @if(count($getExaminationHistory))
+                                @foreach( $getExaminationHistory as $key => $historyItem )
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="card-link" data-toggle="collapse" href="#collapse{{$historyItem->admission_number}}">
+                                            <b>{{ $historyItem->admission_number }}</b> - {{ $historyItem->admission_date }} - {{ $historyItem->doctor_name}}
+                                        </a>
                                     </div>
-                                    <div class="col text-right">
-                                        <button class="btn btn-primary btn-sm text-right">Unduh Invoice</button>
+                                    <div id="collapse{{$historyItem->admission_number}}" class="collapse {{ $key == 0 ? 'show' : ''}}" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item"><b>Height:</b> <br> {{ $historyItem->height }} cm</li>
+                                                        <li class="list-group-item"><b>Blood Pulse:</b> <br> {{ $historyItem->blood_pulse }} /minute </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item"><b>Weight:</b> <br> {{ $historyItem->weight }} kg </li>
+                                                        <li class="list-group-item"><b>Respiratory Rate:</b> <br> {{ $historyItem->respiratory_rate }} /minute</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item"><b>Body Temp:</b> <br> {{ $historyItem->body_temp }}C</li>
+                                                        <li class="list-group-item"><b>Blood Pressure:</b> <br> {{ $historyItem->blood_pressure }} mmHg </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <br>
+                                                        <b>Keluhan</b> 
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <p>{{ $historyItem->symptoms }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+            
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <br>
+                                                        <b>Catatan Keluhan</b> 
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <p>{{ $historyItem->symptom_notes }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <br>
+                                                        <b>Diagnosa Utama</b> 
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <p>{{ $historyItem->diagnosa_utama }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <br>
+                                                        <b>Rekomendasi Medis</b> 
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <p>{{ $historyItem->medical_recommendation }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col text-right">
+                                                        <br>
+                                                        <button class="btn btn-primary btn-sm text-right">Unduh Invoice</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </x-slot>
-                            <x-slot name="body">
-                                <div class="row">
-                                    <div class="col">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><b>Height:</b> <br> 170 cm</li>
-                                            <li class="list-group-item"><b>Blood Pulse:</b> <br> 70 /minute </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><b>Weight:</b> <br> 70 kg </li>
-                                            <li class="list-group-item"><b>Respiratory Rate:</b> <br> 80 /minute</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><b>Body Temp:</b> <br> 36C</li>
-                                            <li class="list-group-item"><b>Blood Pressure:</b> <br> 120/100 mmHg </li>
-                                        </ul>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <br>
-                                            <b>Keluhan</b> 
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    Sakit Kepala
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <br>
-                                            <b>Catatan Keluhan</b> 
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    Sudah 3 hari sakit
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <br>
-                                            <b>Rekomendasi Medis</b> 
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    Sudah 3 hari sakit
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </x-slot>
-                        </x-frontend.card>
+                                <br>
+                                @endforeach
+                            @endif
+                        </div>
                     </x-slot>
                 </x-frontend.card>
             </div><!--col-md-10-->
