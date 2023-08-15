@@ -6,15 +6,15 @@ use Illuminate\Support\Js;
 @extends('frontend.layouts.app')
 
 @push('after-styles')
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/select2-bs.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/css/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/css/select2-bs.min.css') }}" rel="stylesheet">
      <!-- datepicker styles -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
 @endpush
 
 @push('after-scripts')
-    <script src="{{ asset('js/select2.full.min.js') }}"> </script>
-    <script src="{{ asset('js/app/queue_form.js') }}"> </script>
+    <script src="{{ asset('vendor/js/select2.full.min.js') }}"> </script>
+    <script src="{{ asset('vendor/js/app/queue_form.js') }}"> </script>
     <!-- Datepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"> </script>
     <script>

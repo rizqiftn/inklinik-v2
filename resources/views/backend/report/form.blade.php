@@ -3,12 +3,12 @@
 @section('title', __('Payment List'))
 
 @push('after-styles')
-    <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/css/datatables.min.css') }}">
 @endpush
 
 @push('after-scripts')
-    <script src="{{ asset('js/datatables.min.js') }}"></script>
-    <script src="{{ asset('js/app/report/generate_report.js') }}"></script>
+    <script src="{{ asset('vendor/js/datatables.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/app/report/generate_report.js') }}"></script>
 @endpush
 
 @section('content')

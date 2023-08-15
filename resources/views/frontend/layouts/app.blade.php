@@ -21,7 +21,7 @@
     <link href="{{ asset('landingpage/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('landingpage/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('landingpage/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/css/style.css') }}" rel="stylesheet">
     @stack('after-styles')
 </head>
 <body>
@@ -39,7 +39,7 @@
     <script src="{{ mix('js/manifest.js') }}"></script>
     <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/frontend.js') }}"></script>
-    <script src="{{ asset('js/moment.js') }}"></script>
+    <script src="{{ asset('vendor/js/moment.js') }}"></script>
     <livewire:scripts />
 
     <script>

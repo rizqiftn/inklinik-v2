@@ -3,12 +3,12 @@
 @section('title', __('Admission Form'))
 
 @push('after-styles')
-    <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/css/datatables.min.css') }}">
 @endpush
 
 @push('after-scripts')
-    <script src="{{ asset('js/datatables.min.js') }}"></script>
-    <script src="{{ asset('js/app/admission/queue_form.js') }}"> </script>
+    <script src="{{ asset('vendor/js/datatables.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/app/admission/queue_form.js') }}"> </script>
     <script>
         var skipQueueTbl;
     </script>

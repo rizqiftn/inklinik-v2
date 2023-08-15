@@ -2,6 +2,10 @@
 
 @section('title', __('Dashboard'))
 
+@push('after-scripts')
+    <script src="{{ asset('vendor/js/app/backend/dashboard.js') }}"></script>
+@endpush
+
 @section('content')
 
 <div class="row">
@@ -17,7 +21,7 @@
                                 </h3>
                                 <h5 class="card-title">Total Pasien Menunggu Diperiksa</h5>
                                 <p class="card-text">
-                                    <h2> 20 Orang</h2>
+                                    <h2 id="pasien-diperiksa-text"> 0 </h2>
                                 </p>
                             </div>
                         </div>
@@ -30,7 +34,7 @@
                                 </h3>
                                 <h5 class="card-title">Total Pasien Hari Ini</h5>
                                 <p class="card-text">
-                                    <h2> 20 Orang</h2>
+                                    <h2 id="pasien-hari_ini-text"> 0 </h2>
                                 </p>
                             </div>
                         </div>
@@ -43,7 +47,7 @@
                                 </h3>
                                 <h5 class="card-title">Rata-rata Keseluruhan Waktu Pelayanan</h5>
                                 <p class="card-text">
-                                    <h2> 15 Menit</h2>
+                                    <h2 id="avg-waktu-pelayanan"> 0 </h2>
                                 </p>
                             </div>
                         </div>
@@ -63,7 +67,7 @@
             <x-slot name="body">
                 <div class="row">
                     <div class="col">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="table-avg-symptoms">
                                 <thead>
                                     <th>Keluhan</th>
                                     <th>Rata-rata Waktu Pelayanan (menit)</th>

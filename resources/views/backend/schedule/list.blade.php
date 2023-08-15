@@ -3,12 +3,12 @@
 @section('title', __('Master Jadwal Praktik'))
 
 @push('after-styles')
-    <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/css/datatables.min.css') }}">
 @endpush
 
 @push('after-scripts')
-    <script src="{{ asset('js/datatables.min.js') }}"></script>
-    <script src="{{ asset('js/app/schedule/list.js') }}"></script>
+    <script src="{{ asset('vendor/js/datatables.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/app/schedule/list.js') }}"></script>
 @endpush
 
 @section('content')

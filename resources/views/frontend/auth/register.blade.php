@@ -3,13 +3,13 @@
 @section('title', __('Register'))
 
 @push('after-styles')
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/select2-bs.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/css/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/css/select2-bs.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('after-scripts')
-    <script src="{{ asset('js/select2.full.min.js') }}"> </script>
-    <script src="{{ asset('js/app/register/form.js') }}"> </script>
+    <script src="{{ asset('vendor/js/select2.full.min.js') }}"> </script>
+    <script src="{{ asset('vendor/js/app/register/form.js') }}"> </script>
 @endpush
 
 @section('content')

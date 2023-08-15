@@ -3,8 +3,8 @@
 @section('title', __('Examination Form'))
 
 @push('after-styles')
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/select2-bs.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/css/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/css/select2-bs.min.css') }}" rel="stylesheet">
     <style>
         .select2-default { 
             color: #999 !important;
@@ -24,8 +24,8 @@
 @endpush
 
 @push('after-scripts')
-    <script src="{{ asset('js/select2.full.min.js') }}"> </script>
-    <script src="{{ asset('js/app/examination/form.js') }}"> </script>
+    <script src="{{ asset('vendor/js/select2.full.min.js') }}"> </script>
+    <script src="{{ asset('vendor/js/app/examination/form.js') }}"> </script>
 @endpush
 
 @section('content')

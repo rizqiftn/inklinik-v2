@@ -20,7 +20,7 @@
     <link href="{{ asset('landingpage/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('landingpage/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('landingpage/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/css/style.css') }}" rel="stylesheet">
     <link href="{{ mix('css/backend.css') }}" rel="stylesheet">
     <livewire:styles />
     @stack('after-styles')
@@ -48,8 +48,8 @@
     </div><!--c-wrapper-->
 
     @stack('before-scripts')
-    <script src="{{ asset('js/moment.js') }}"></script>
-    <script src="{{ asset('js/utils.js') }}"></script>
+    <script src="{{ asset('vendor/js/moment.js') }}"></script>
+    <script src="{{ asset('vendor/js/utils.js') }}"></script>
     <script src="{{ mix('js/manifest.js') }}"></script>
     <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/backend.js') }}"></script>

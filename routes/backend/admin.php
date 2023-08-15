@@ -16,3 +16,5 @@ Route::get('worklist', [ExaminationController::class, 'list'])
     ->breadcrumbs(function (Trail $trail) {
         $trail->push(__('Worklist'), route('admin.worklist'));
     });
+
+Route::get('/dashboard/get-dashboard-data', [DashboardController::class, 'dashboardData']);

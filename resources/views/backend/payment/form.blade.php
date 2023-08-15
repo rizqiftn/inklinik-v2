@@ -3,7 +3,7 @@
 @section('title', __('Payment Form'))
 
 @push('after-scripts')
-    <script src="{{ asset('js/app/payment/form.js') }}"></script>
+    <script src="{{ asset('vendor/js/app/payment/form.js') }}"></script>
 @endpush
 
 @section('content')

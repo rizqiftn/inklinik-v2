@@ -8,14 +8,14 @@ use Illuminate\Support\Js;
 @section('title', __('Master Dayoff'))
 
 @push('after-styles')
-    <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/css/datatables.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
 @endpush
 
 @push('after-scripts')
-    <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/datatables.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"> </script>
-    <script src="{{ asset('js/app/schedule/dayoff_form.js') }}"></script>
+    <script src="{{ asset('vendor/js/app/schedule/dayoff_form.js') }}"></script>
     <script>
         var dateDisabled = {{ Js::from($dayOff) }};
     </script>

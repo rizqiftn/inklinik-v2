@@ -19,7 +19,7 @@
         <link href="{{ asset('landingpage/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
         <link href="{{ asset('landingpage/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
         <link href="{{ asset('landingpage/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/css/style.css') }}" rel="stylesheet">
     </head>
     <body>
         @include('includes.partials.read-only')
