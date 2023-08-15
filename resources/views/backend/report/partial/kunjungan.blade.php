@@ -1,4 +1,4 @@
-<table class="table table-bordered">
+<table class="table table-bordered" border="1">
     <thead>
         <tr>
             <th rowspan="2">No. Urut</th>
@@ -23,8 +23,30 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td colspan=7 class="text-center">Belum ada data tersedia</td>
-        </tr>
+        <?php 
+        if ( $result ) {
+            $i = 1;
+            ?>
+            @foreach( $result as $key => $diagnoseItem )
+                <tr>
+                    <td>{{ $i++ }}</td>
+                    <td>{{ $diagnoseItem['diagnose_code'] }}</td>
+                    <td>{{ $diagnoseItem['diagnose_name'] }}</td>
+                    <td>{{ $diagnoseItem['total_kasus_l'] }}</td>
+                    <td>{{ $diagnoseItem['total_kasus_p'] }}</td>
+                    <td>{{ $diagnoseItem['total_kasus_baru'] }}</td>
+                    <td>{{ $diagnoseItem['total_kunjungan'] }}</td>
+                </tr>
+            @endforeach
+            <?php
+        } else {
+            ?>
+                <tr>
+                    <td></td>
+                    <td colspan=7 class="text-center">Belum ada data tersedia</td>
+                </tr>
+            <?php
+        }
+        ?>
     </tbody>
 </table>

@@ -9,5 +9,6 @@ Route::get('report', [ReportController::class, 'generateReport'])
         $trail->push(__('Generate Report'), route('admin.report'));
     });
 
+Route::get('report/print/{reportType}/{reportPeriode}', [ReportController::class, 'printReport']);
 Route::post('report/report-view', [ReportController::class, 'reportView'])->name('report.reportView');
     

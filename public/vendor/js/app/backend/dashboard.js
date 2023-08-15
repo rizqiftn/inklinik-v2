@@ -12,7 +12,7 @@ $(document).ready( () => {
             $.each(data.avg_symptoms, (k,v) => {
                 _row += `<tr>
                     <td>${v.symptoms}</td>
-                    <td>${v.waktu_pelayanan}</td>
+                    <td>${ Math.ceil(parseFloat(v.waktu_pelayanan) / 60) } Menit</td>
                 </tr>`
             })
 

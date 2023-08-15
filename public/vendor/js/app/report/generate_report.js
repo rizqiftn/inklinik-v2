@@ -10,7 +10,13 @@ $(document).ready( () => {
 
                 $('#render-title').empty().html(title)
                 $('#render-view').empty().html(viewFile)
+
+                $('#btn-print-report').attr('disabled', false)
             }
         })
+    })
+
+    $('#btn-print-report').on('click', () => {
+        console.log('bisa di klik')
     })
 })

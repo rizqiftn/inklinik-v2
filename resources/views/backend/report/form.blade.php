@@ -56,7 +56,14 @@
             <div class="col">
                 <x-backend.card>
                     <x-slot name="header">
-                        <b id="render-title">-</b>
+                        <div class="row">
+                            <div class="col">
+                                <b id="render-title">-</b>
+                            </div>
+                            <div class="col text-right">
+                                <button type="button" class="btn btn-info" disabled id="btn-print-report">Cetak Laporan</button>
+                            </div>
+                        </div>
                     </x-slot>
                     <x-slot name="body">
                         <div class="row">
