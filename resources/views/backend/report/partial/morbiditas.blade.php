@@ -53,9 +53,9 @@
                     @foreach( $diagnoseItem['groupage_data'] as $k => $groupAgeItem )
                         <td>{{ $groupAgeItem }}</td>
                     @endforeach
-                    <td>{{ $diagnoseItem['total_kasus_baru'] }}</td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td>{{ $diagnoseItem['total_kasus_baru_l'] }}</td>
+                    <td>{{ $diagnoseItem['total_kasus_baru_p'] }}</td>
+                    <td>{{ $diagnoseItem['total_kasus_baru_l'] + $diagnoseItem['total_kasus_baru_p'] }}</td>
                     <td>{{ $diagnoseItem['total_kunjungan'] }}</td>
                 </tr>
             @endforeach

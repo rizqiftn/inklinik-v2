@@ -65,22 +65,24 @@ class ReportController extends Controller
         foreach( $getData as $key => $morbiditasItem ) {
             $totalKasusLaki[$morbiditasItem->groupage_id] = (int) ($morbiditasItem->sex == 'L' ? $morbiditasItem->total_diagnosa : 0);
             $totalKasusPerempuan[$morbiditasItem->groupage_id] = (int) $morbiditasItem->sex == 'P' ? $morbiditasItem->total_diagnosa : 0;
-            $totalKunjungan = isset($result[$morbiditasItem->diagnose_code]['total_kunjungan']) ? $result[$morbiditasItem->diagnose_code]['total_kunjungan'] : 0;
 
             if ( !isset( $result[$morbiditasItem->diagnose_code]) ) {
                 $result[$morbiditasItem->diagnose_code] = [
                     'diagnose_code' => $morbiditasItem->diagnose_code,
                     'diagnose_name' => $morbiditasItem->diagnose_name,
                     'total_kasus_baru' => 0,
-                    'total_kasus_baru_p' => 0,
-                    'total_kasus_baru_l' => 0,
-                    'total_kunjungan' => 0
+                    'total_kasus_baru_p' => $morbiditasItem->sex == 'P' ? $morbiditasItem->kasus_baru : 0,
+                    'total_kasus_baru_l' => $morbiditasItem->sex == 'L' ? $morbiditasItem->kasus_baru : 0,
+                    'total_kunjungan' => $morbiditasItem->total_diagnosa
                 ];
                 foreach ( $groupAge as $groupAgeKey => $groupAgeItem) {
                     $result[$morbiditasItem->diagnose_code]['groupage_data']['total_kasus_l_'.$groupAgeItem['groupage_id']] = ($morbiditasItem->sex == 'L' && $morbiditasItem->groupage_id == $groupAgeItem['groupage_id']) ? $morbiditasItem->total_diagnosa : 0;
                     $result[$morbiditasItem->diagnose_code]['groupage_data']['total_kasus_p_'.$groupAgeItem['groupage_id']] = ($morbiditasItem->sex == 'P' && $morbiditasItem->groupage_id == $groupAgeItem['groupage_id']) ? $morbiditasItem->total_diagnosa : 0;
                 }
             } else {
+                $result[$morbiditasItem->diagnose_code]['total_kasus_baru_p'] += $morbiditasItem->sex == 'P' ? $morbiditasItem->kasus_baru : 0;
+                $result[$morbiditasItem->diagnose_code]['total_kasus_baru_l'] += $morbiditasItem->sex == 'L' ? $morbiditasItem->kasus_baru : 0;
+                $result[$morbiditasItem->diagnose_code]['total_kunjungan'] += $morbiditasItem->total_diagnosa;
                 foreach ( $groupAge as $groupAgeKey => $groupAgeItem) {
                     $result[$morbiditasItem->diagnose_code]['groupage_data']['total_kasus_l_'.$groupAgeItem['groupage_id']] += ($morbiditasItem->sex == 'L' && $morbiditasItem->groupage_id == $groupAgeItem['groupage_id']) ? $morbiditasItem->total_diagnosa : 0;
                     $result[$morbiditasItem->diagnose_code]['groupage_data']['total_kasus_p_'.$groupAgeItem['groupage_id']] += ($morbiditasItem->sex == 'P' && $morbiditasItem->groupage_id == $groupAgeItem['groupage_id']) ? $morbiditasItem->total_diagnosa : 0;
