@@ -1,4 +1,14 @@
-<table class="table table-bordered table-responsive">
+@if ($download)
+    <style>
+    table {
+        border-collapse: collapse;
+    }
+    table, td, th {
+        border: 1px solid black;
+    }
+    </style>
+@endif
+<table class="table table-bordered table-responsive" border=1>
     <thead>
         <tr>
             <th rowspan="3">No. Urut</th>
@@ -30,8 +40,33 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td colspan=26 class="text-center">Belum ada data tersedia</td>
-        </tr>
+    <?php 
+        if ( $result ) {
+            $i = 1;
+            ?>
+            @foreach( $result as $key => $diagnoseItem )
+                <tr>
+                    <td>{{ $i++ }}</td>
+                    <td>{{ $diagnoseItem['diagnose_code'] }}</td>
+                    <td>{{ $diagnoseItem['diagnose_name'] }}</td>
+                    <td>-</td>
+                    @foreach( $diagnoseItem['groupage_data'] as $k => $groupAgeItem )
+                        <td>{{ $groupAgeItem }}</td>
+                    @endforeach
+                    <td>{{ $diagnoseItem['total_kasus_baru'] }}</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>{{ $diagnoseItem['total_kunjungan'] }}</td>
+                </tr>
+            @endforeach
+            <?php
+        } else {
+            ?>
+                <tr>
+                    <td colspan=26 class="text-center">Belum ada data tersedia</td>
+                </tr>
+            <?php
+        }
+        ?>
     </tbody>
 </table>

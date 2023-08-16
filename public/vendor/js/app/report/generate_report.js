@@ -1,6 +1,7 @@
 $(document).ready( () => {
     $('#btn-generate-report').on('click', (e) => {
         e.preventDefault()
+
         $.ajax({
             url: `/admin/report/report-view`,
             method: 'POST',
@@ -11,7 +12,9 @@ $(document).ready( () => {
                 $('#render-title').empty().html(title)
                 $('#render-view').empty().html(viewFile)
 
-                $('#btn-print-report').attr('disabled', false)
+                let _reportType = $('#report_type').val() == 1 ? 'morbiditas' : 'kunjungan'
+                    _reportPeriode = $('#report_periode').val()
+                $('#btn-print-report').attr('disabled', false).attr('href', `/admin/report/print/${_reportType}/${_reportPeriode}`)
             }
         })
     })

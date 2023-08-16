@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\PaymentDetail;
 use App\Repositories\Admission;
 use App\Repositories\Examination;
+use Barryvdh\DomPDF\Facade\Pdf;
 use DB;
 
 class PaymentController extends Controller
@@ -84,5 +85,11 @@ class PaymentController extends Controller
             'message' => 'Sukses',
             'data' => $postdata
         ]);
+    }
+
+    public function printInvoice()
+    {
+        
+        return Pdf::stream();
     }
 }

@@ -61,7 +61,7 @@
                                 <b id="render-title">-</b>
                             </div>
                             <div class="col text-right">
-                                <button type="button" class="btn btn-info" disabled id="btn-print-report">Cetak Laporan</button>
+                                <a target="_blank" class="btn btn-info" disabled id="btn-print-report">Cetak Laporan</a>
                             </div>
                         </div>
                     </x-slot>

@@ -1,3 +1,13 @@
+@if ($download)
+    <style>
+    table {
+        border-collapse: collapse;
+    }
+    table, td, th {
+        border: 1px solid black;
+    }
+    </style>
+@endif
 <table class="table table-bordered" border="1">
     <thead>
         <tr>
