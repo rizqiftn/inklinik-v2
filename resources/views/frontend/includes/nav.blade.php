@@ -25,10 +25,10 @@
                 </ul>
             </li>
         @else
-            <li><a class="nav-link" href="{{ route('frontend.auth.login') }}">@lang('Login')</a></li>
+            <li><a class="nav-link" href="{{ route('frontend.auth.login') }}">Login</a></li>
 
             @if (config('boilerplate.access.user.registration'))
-                <li><a class="nav-link" href="{{ route('frontend.auth.register') }}">@lang('Register')</a></li>
+                <li><a class="nav-link" href="{{ route('frontend.auth.register') }}">Daftar</a></li>
             @endif
         @endauth
         </ul>

@@ -13,7 +13,7 @@ Route::get('/', [HomeController::class, 'index'])
     ->breadcrumbs(function (Trail $trail) {
         $trail->push(__('Home'), route('frontend.index'));
     });
-Route::get('/get-schedule-time/{schedule}/{reservationDate}', [HomeController::class, 'getScheduleTime'])->name('getScheduleTime');
+Route::get('/get-schedule-time/{schedule}/{reservationDate}/{faskesId}', [HomeController::class, 'getScheduleTime'])->name('getScheduleTime');
 Route::get('/get-symptoms', [HomeController::class, 'getSymptoms'])->name('getSymptoms');
 
 Route::get('/get-queue', [HomeController::class, 'getQueue'])

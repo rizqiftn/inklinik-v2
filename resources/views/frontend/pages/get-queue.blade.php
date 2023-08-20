@@ -32,47 +32,60 @@ use Illuminate\Support\Js;
             <div class="col-md-8">
                 <x-frontend.card>
                     <x-slot name="header">
+                        @lang('Informasi Pasien')
+                    </x-slot>
+                    <x-slot name="body">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h6>
+                                    <b>Nama Pasien</b>
+                                </h6>
+                                <p>
+                                    {{ $patientInformation->patient_name }} ({{ $patientInformation->patient_sex }})<br>
+                                </p>
+                            </div>
+                            <div class="col-sm">
+                                <h6>
+                                    <b> No. Handphone / WA </b>
+                                </h6>
+                                <p>{{ $patientInformation->phone_number }}</p>
+                            </div>
+                            <div class="col-sm">
+                                <h6>
+                                    <b>Alamat Pasien</b>
+                                </h6>
+                                <p>{{ $patientInformation->address }}</p>
+                            </div>
+                        </div>
+                    </x-slot>
+                </x-frontend.card> <br>
+                <x-frontend.card>
+                    <x-slot name="header">
                         @lang('Form Pengambilan Antrian')
                     </x-slot>
 
                     <x-slot name="body">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="card-title">
-                                    <b>Informasi Pasien</b>
-                                </h6>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>
-                                            <b>Nama Pasien</b>
-                                        </h6>
-                                        <p>
-                                            {{ $patientInformation->patient_name }} ({{ $patientInformation->patient_sex }})<br>
-                                        </p>
-                                    </div>
-                                    <div class="col-sm">
-                                        <h6>
-                                            <b> No. Handphone / WA </b>
-                                        </h6>
-                                        <p>{{ $patientInformation->phone_number }}</p>
-                                    </div>
-                                    <div class="col-sm">
-                                        <h6>
-                                            <b>Alamat Pasien</b>
-                                        </h6>
-                                        <p>{{ $patientInformation->address }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <br> <!-- End Patient Information -->
                         <x-forms.post :action="route('frontend.storeQueue')">
                             <input type="hidden" name="patient_id" value="{{ $patientInformation->patient_id }}">
+                            <input type="hidden" name="dic_id" id="dic_id" value="{{ old('dic_id') }}">
                             <div class="form-group required row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">@lang('Tanggal Kunjungan')</label>
 
                                 <div class="col-md-6">
                                     <input type="text" min="{{ date('Y-m-d') }}" name="admission_date" id="admission_date" class="form-control" value="{{ old('admission_date') }}" placeholder="{{ __('Tanggal Kunjungan') }}" required autofocus autocomplete="off"/>
+                                </div>
+                            </div><!--form-group-->
+
+                            <div class="form-group required row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">@lang('Faskes Tujuan')</label>
+
+                                <div class="col-md-6">
+                                    <select class="form-control" name="faskes_id" id="faskes_id">
+                                        <option value="0" disabled selected>-- Pilih --</option>
+                                        @foreach($faskesList as $key => $faskesItem)
+                                            <option data-dic_id="{{ $faskesItem['dic_id']}}" value="{{ $faskesItem['faskes_id'] }}">{{ $faskesItem['faskes_name'] }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div><!--form-group-->
 

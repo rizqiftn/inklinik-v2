@@ -79,26 +79,35 @@ jQuery( () => {
             }
         })
 
-    $('#admission_date').on('change', () => {
-        let days = weekdays.find(d => d.reference_value === moment($('#admission_date').val()).format('dddd') );
-        $.ajax({
-            url: `/get-schedule-time/${days.reference_id}/${$('#admission_date').val()}`,
-            success: (response) => {
-                const {data} = response
-                $('#schedule_id').empty()
-                if ( data.length ) {
-                    $.each(data, (k,v) => {
-                        let scheduleOptions = new Option(
-                            `${v.schedule_time_start} - ${v.schedule_time_end}`, 
-                            v.schedule_id, 
-                            v.schedule_id == $('#selected-schedule').val(),
-                            v.schedule_id == $('#selected-schedule').val()
-                        )
-                        $('#schedule_id').append(scheduleOptions)
-                    })
-                }
-                
+        $('#admission_date').on('change', () => {
+            if ( $('#faskes_id').val() != null ) {
+                $('#faskes_id').trigger('change')
             }
         })
-    })
+
+        $('#faskes_id').on('change', () => {
+            // set hidden dic_id
+            $('#dic_id').val($('#faskes_id :selected').attr('data-dic_id'))
+            // get schedule
+            let days = weekdays.find(d => d.reference_value === moment($('#admission_date').val()).format('dddd') );
+            $.ajax({
+                url: `/get-schedule-time/${days.reference_id}/${$('#admission_date').val()}/${$('#faskes_id').val()}`,
+                success: (response) => {
+                    const {data} = response
+                    $('#schedule_id').empty()
+                    if ( data.length ) {
+                        $.each(data, (k,v) => {
+                            let scheduleOptions = new Option(
+                                `${v.schedule_time_start} - ${v.schedule_time_end}`, 
+                                v.schedule_id, 
+                                v.schedule_id == $('#selected-schedule').val(),
+                                v.schedule_id == $('#selected-schedule').val()
+                            )
+                            $('#schedule_id').append(scheduleOptions)
+                        })
+                    }
+                    
+                }
+            })
+        })
 })

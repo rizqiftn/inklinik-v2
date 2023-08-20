@@ -6,7 +6,7 @@ use App\Repositories\BaseRepositories;
 use Illuminate\Support\Facades\DB;
 
 class Examination extends BaseRepositories {
-    public function getAvgExaminationTime($symptoms = '')
+    public function getAvgExaminationTime($symptoms = '', $faskesId = 1)
     {
         $avgExaminationTime = config('global.reference.waiting_time');
 
@@ -14,7 +14,7 @@ class Examination extends BaseRepositories {
             $data = DB::table('examination_logs')
                         ->select(DB::raw("AVG(time_diff) as time_diff"))
                         ->join('admission_t', 'admission_t.admission_id', '=', 'examination_logs.admission_id')
-                        ->where('symptoms' , 'like', '%'.$symptoms.'%')->get()->first();
+                        ->where('symptoms' , 'like', '%'.$symptoms.'%')->where('faskes_id', '=', $faskesId)->get()->first();
 
             return $data->time_diff == null ? $avgExaminationTime : $data->time_diff;
         }

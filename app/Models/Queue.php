@@ -13,5 +13,5 @@ class Queue extends Model
 
     protected $primaryKey = 'queue_id';
 
-    protected $fillable = ['schedule_id', 'patient_id', 'dic_id', 'symptoms', 'time_attendance', 'symptom_notes'];
+    protected $fillable = ['schedule_id', 'patient_id', 'dic_id', 'symptoms', 'time_attendance', 'symptom_notes', 'faskes_id'];
 }

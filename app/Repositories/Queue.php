@@ -54,18 +54,18 @@ class Queue extends BaseRepositories {
                     ]);
     }
 
-    public static function calculateAttendanceTime($date_start, $date_end, $symptoms = '')
+    public static function calculateAttendanceTime($date_start, $date_end, $symptoms = '',  $faskesId)
     {
         $getLatestQueue = (new ModelQueue())->select('time_attendance', 'symptoms')->whereBetween('time_attendance', [
             date('Y-m-d H:i:s', strtotime($date_start)), 
             date('Y-m-d H:i:s', strtotime($date_end))
-        ])->orderBy('queue_id', 'desc')->get()->first();
+        ])->where('faskes_id', '=', $faskesId)->orderBy('queue_id', 'desc')->get()->first();
 
         if ( empty($getLatestQueue) ) {
             return Carbon::createFromFormat('Y-m-d H:i:s', $date_start)->toDateTimeString();
         }
 
-        $avgWaitingTime = (new Examination)->getAvgExaminationTime($getLatestQueue->symptoms);
+        $avgWaitingTime = (new Examination)->getAvgExaminationTime($getLatestQueue->symptoms, $faskesId);
 
         $latestQueueDate = date('Y-m-d H:i:00', strtotime($getLatestQueue->time_attendance));
         if ( date('Y-m-d H:i:00') > $latestQueueDate) {
